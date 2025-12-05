@@ -12,3 +12,5 @@ Score: 100
   
 "1/2/1997" vs "1/2/97"  
 Score: 100  
+
+JavaScript & Python both included with the same function layout.
