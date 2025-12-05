@@ -1,5 +1,5 @@
 # fuzzy_matching
-Attempt at fuzzy string matching without leveraging existing algorithms.
+Attempt at fuzzy string matching without leveraging existing algorithms (Levenshtein, Jaro-Winkler).
 
 Character frequency, character positions, and character abbreviations are leveraged to determine the score based on fuzziness.
 
