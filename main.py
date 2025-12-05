@@ -6,18 +6,18 @@ TYPO_PENALTY = 10
 MISMATCH_PENALTY = 25
 
 def tokenize(str):
-    str = str.lower().replace("-", " ").replace("/", " ").strip()
+    str = str.lower().replace("/", " ").replace("-", " ").strip()
     table = str.maketrans("", "", string.punctuation)
 
     return str.translate(table).split()
 
 def character_frequency(str):
-    freq = {}
+    frequency = {}
 
     for c in str:
-        freq[c] = freq.get(c, 0) + 1
+        frequency[c] = frequency.get(c, 0) + 1
 
-    return freq
+    return frequency
 
 def similarity(token_1, token_2):
     freq_1 = character_frequency(token_1)
@@ -44,7 +44,7 @@ def fuzzy_match(tokens_1, tokens_2):
     tokens_2_matched = set()
 
     for i, token_a in enumerate(tokens_1_unmatched):
-        best = None
+        best_token = None
         best_score = 0
 
         for k, token_b in enumerate(tokens_2_unmatched):
@@ -58,30 +58,30 @@ def fuzzy_match(tokens_1, tokens_2):
             penalty_to_apply = 0
 
             if is_abbreviation_match:
-                best = k
+                best_token = k
                 best_score = 1
 
             elif is_initial_match:
-                best = k
+                best_token = k
                 best_score = 1
 
             elif similarity_score >= (SIMILARITY_LIMIT / 100) and similarity_score > best_score:
-                best = k
+                best_token = k
                 best_score = similarity_score
                 penalty_to_apply = TYPO_PENALTY
 
-        if best is not None:
-            tokens_2_matched.add(best)
+        if best_token is not None:
+            tokens_2_matched.add(best_token)
             matched_tokens.add(token_a)
             penalties += penalty_to_apply
 
     remaining_tokens = (len(tokens_1_unmatched) + len(tokens_2_unmatched)) - 2 * len(tokens_2_matched)
     penalties += remaining_tokens * MISMATCH_PENALTY
 
-    base = len(matched_tokens) / max(len(tokens_1_set), len(tokens_2_set))
-    score = max(0, base * 100 - penalties)
+    base_score = len(matched_tokens) / max(len(tokens_1_set), len(tokens_2_set))
+    final_score = max(0, base_score * 100 - penalties)
 
-    return round(score, 2)
+    return round(final_score, 2)
 
 def main(str_1, str_2):
     token_1 = tokenize(str_1)
@@ -92,4 +92,4 @@ def main(str_1, str_2):
 
     return score
 
-main("123 main st", "123 main street")
+main("1/2/1997", "1/2/97")
