@@ -14,17 +14,17 @@ def tokenize(str):
 def character_frequency(str):
     frequency = {}
 
-    for c in str:
-        frequency[c] = frequency.get(c, 0) + 1
+    for char in str:
+        frequency[char] = frequency.get(char, 0) + 1
 
     return frequency
 
 def similarity(token_1, token_2):
-    freq_1 = character_frequency(token_1)
-    freq_2 = character_frequency(token_2)
+    frequency_1 = character_frequency(token_1)
+    frequency_2 = character_frequency(token_2)
 
-    all_characters = set(freq_1) | set(freq_2)
-    difference = sum(abs(freq_1.get(c, 0) - freq_2.get(c, 0)) for c in all_characters)
+    all_characters = set(frequency_1) | set(frequency_2)
+    difference = sum(abs(frequency_1.get(char, 0) - frequency_2.get(char, 0)) for char in all_characters)
 
     frequency_score = 1 - difference / (len(token_1) + len(token_2))
 
