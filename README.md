@@ -1,7 +1,7 @@
 # fuzzy_matching
 Attempt at fuzzy string matching without leveraging existing algorithms (Levenshtein, Jaro-Winkler).  
   
-Character frequency, character positions, and character abbreviations are leveraged to determine the score based on fuzziness.  
+Character frequency, character positions, and character abbreviations are leveraged to determine the score of similarity.  
   
 Example:  
 "123 main st" vs "123 main street"  
