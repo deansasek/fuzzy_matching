@@ -2,8 +2,8 @@ import string
 
 # 54 was the best compromise based on the names tried
 SIMILARITY_LIMIT = 54
-TYPO_PENALTY = 7
-MISMATCH_PENALTY = 18
+TYPO_PENALTY = 10
+MISMATCH_PENALTY = 25
 
 def tokenize(str):
     str = str.lower().replace("-", " ").replace("/", " ").strip()
