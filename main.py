@@ -6,7 +6,7 @@ TYPO_PENALTY = 7
 MISMATCH_PENALTY = 18
 
 def tokenize(str):
-    str = str.lower().replace("-", " ").strip()
+    str = str.lower().replace("-", " ").replace("/", " ").strip()
     table = str.maketrans("", "", string.punctuation)
 
     return str.translate(table).split()
