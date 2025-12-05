@@ -102,7 +102,7 @@ function fuzzy_match(tokens_1, tokens_2) {
         }
 
         if (best_token !== null) {
-            tokens_2_matched.add(best);
+            tokens_2_matched.add(best_token);
             matched_tokens.add(token_a);
             penalties += penalty_to_apply;
         }
